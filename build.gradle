@@ -1,0 +1,44 @@
+apply from: "../.gradle/sign.gradle"
+apply plugin: "java"
+
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+
+version = "0.1.0"
+group = "io.github.lxgaming.mcc"
+archivesBaseName = "MCC"
+
+configurations {
+  provided {
+    compile.extendsFrom(provided)
+  }
+  build {
+    finalizedBy(signJar)
+  }
+}
+
+repositories {
+  mavenCentral()
+  maven {
+    url "https://repo.spacehq.org/content/repositories/snapshots/"
+  }
+}
+
+dependencies {
+  compile "org.json:json:20160212"
+  compile "org.spacehq:mcprotocollib:1.9.4-SNAPSHOT"
+}
+
+jar {
+  manifest {
+    attributes "Main-Class": "io.github.lxgaming.mcc.MCC"
+  }
+  from {
+    (configurations.compile - configurations.provided).collect {
+	  it.isDirectory() ? it : zipTree(it)
+	}
+  }
+  from {
+    ["LICENSE"]
+  }
+}
