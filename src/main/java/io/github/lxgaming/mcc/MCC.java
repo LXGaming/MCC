@@ -26,7 +26,7 @@ public class MCC {
 	public static void main(String[] args) {
 		LogManager.info("Minecraft Chat v" + Configuration.VERSION);
 		LogManager.info("Author - LX_Gaming");
-		LogManager.info("Website - http://lxgaming.github.io");
+		LogManager.info("Website - https://lxgaming.github.io/");
 		LogManager.info(Environment.getJavaVendor() + " - " + Environment.getJavaVersion());
 		LogManager.info(Environment.getOSName() + " - " + Environment.getOSVersion() + " - " + Environment.getOSArch());
 		Configuration.loadConfig();
